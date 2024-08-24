@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/materias.css">
 
-    <script src="assets/js/funciones.js"></script>
     <script src="assets/js/ejemplo.js"></script>
 
-    <title>Mi primer HTML</title>
+    <title>Mi contador</title>
 </head>
 
 
@@ -17,49 +14,12 @@
 
     <div class="cuadro-materia">
         <!-- nombre de la materia -->
-        <h4 class="titulo-materia">Interfaces de usuario</h4>
+        <h2 class="titulo-materia">Contador</h2>
 
+        <h4 id="mensaje">No se ha apretado el contador</h4>
 
-        <!-- temas de la materia -->
-        <div class="temas-materia">
-            <ul>
-                <li class="item-tema">html</li>
-                <li class="item-tema">css</li>
-                <li class="item-tema">servicios REST</li>
-            </ul>
-        </div>
-
-        <!-- horarios -->
-        <div class="horarios-materias">
-            <p>Miercoles y sabados</p>
-        </div>
-    </div>
-
-
-    <div class="cuadro-materia">
-        <!-- nombre de la materia -->
-        <h4 class="titulo-materia">Persistencia</h4>
-
-
-        <!-- temas de la materia -->
-        <div class="temas-materia">
-            <ul>
-                <li class="item-tema">Base de datos</li>
-                <li class="item-tema">Tablas</li>
-                <li class="item-tema">SQL</li>
-            </ul>
-        </div>
-
-        <!-- horarios -->
-        <div class="horarios-materias">
-            <p>Jueves</p>
-        </div>
-    </div>
-
-    <img class="imagen-meme" src="assets/img/meme.png" alt="Meme de Batman">
-
-
-
+        <button onclick="decrementar_click()">Decrementar</button>
+        <button onclick="incrementar_click()">Incrementar</button>
 </body>
 
 </html>

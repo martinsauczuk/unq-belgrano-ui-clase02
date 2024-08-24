@@ -1,35 +1,28 @@
-let nombre = 'Martin';
-let apellido = 'Sauczuk';
+let clicks = 0;
 
-let nombresAlumnes = ['Ana', 'Augusto', 'Gonzalo', 'Ramiro', 'Salvador'];
+const timeoutHandler = setInterval(() => alert('Dale, apretá algo'), 3000)
 
+function incrmentarVariable() {
+  clicks++;
+}
 
-let integrantesDeUnaClase = [ nombresAlumnes, 'Martin', 'Alan' ]
+function decrmentarVariable() {
+  clicks--;
+}
 
-console.log(integrantesDeUnaClase);
-// console.log('Estoy dentro del HTML programando en js');
-
-// console.info('Estoy es un mensaje de info');
-
-// alert('Esto es un alerta para indicar algo');
-// let nombreIngresado = prompt('Como te llamas');
-// alert('Hola ' + nombreIngresado);
-
-// console.log('Hola', nombre);
-
-// darLaBienvenida(nombre);
+function mostrarClicksActuales() {
+  document.getElementById('mensaje').innerText = `Contador: ${clicks}`;
+}
 
 
-integrantesDeUnaClase.forEach(
-    item => {
-        console.log('Voy a llamar a la funcion');
-        darLaBienvenida(item);
-    }
-)
+function incrementar_click() {
+  clearInterval(timeoutHandler);
+  incrmentarVariable()
+  mostrarClicksActuales()
+}
 
-let person = prompt("Please enter your name", "Harry Potter");
-
-if (person != null) {
-  document.getElementById("demo").innerHTML =
-  "Hello " + person + "! How are you today?";
+function decrementar_click() {
+  clearInterval(timeoutHandler);
+  decrmentarVariable()
+  mostrarClicksActuales()
 }

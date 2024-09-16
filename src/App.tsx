@@ -1,18 +1,14 @@
-import { TituloAplicacion } from './TituloAplicacion';
-import { AppNavbar } from './AppNavbar';
-import { Catalogo } from './Catalogo';
+import React from 'react'
 
-
-function App() {
-
-    return (
-        <>
-            <AppNavbar />
-            <TituloAplicacion />
-            <Catalogo />
-            
-        </>
-    )
+export type AppProps = {
+    nombre: string,
+    apellido: string,
+    edad: number
 }
 
-export default App
+export const App: React.FC<AppProps> = ({ nombre, apellido }) =>
+    <>
+        <h1>Hola {nombre} {apellido}</h1>
+        <h2>Bienvenido a la app</h2>
+    </>
+

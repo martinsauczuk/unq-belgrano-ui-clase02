@@ -1,0 +1,15 @@
+{
+  "name": "chat",
+  "version": "20.0.0",
+  "description": "Etapa 20: Mejorando con JSX",
+  "scripts": {
+    "start": "npx babel view.jsx --out-file view.js --presets=@babel/preset-react"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-react": "^7.24.7"
+  }
+}

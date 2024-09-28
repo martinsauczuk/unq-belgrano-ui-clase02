@@ -1,40 +1,9 @@
-type ContactoProps = {
-    id: number;
-    nombre: string;
-    apellido: string;
-    email: string;
-    legajo?: string;
-}
+import { Contacto } from "../domain/domain"
+import { DomicilioBadge } from './DomicilioBadge';
 
-
-// export const ContactoRow = (contacto: ContactoProps) => {
-    
-//     return (
-//         <tr>
-//             <th scope="row">{contacto.id}</th>
-//             <td>{contacto.nombre}</td>
-//             <td>{contacto.apellido}</td>
-//             <td>{contacto.email}</td>
-//         </tr>
-//     )
-
-// }
-
-// export const ContactoRow = ({ id, nombre, apellido, email}: ContactoProps) => {
-    
-//     return (
-//         <tr>
-//             <th scope="row">{id}</th>
-//             <td>{nombre}</td>
-//             <td>{apellido}</td>
-//             <td>{email}</td>
-//         </tr>
-//     )
-
-// }
-
+type ContactoProps = Contacto
 // Esta es la forma que vamos a preferir en la cursada
-export const ContactoRow: React.FC<ContactoProps> = ({ id, nombre, apellido, email, legajo }) => {
+export const ContactoRow: React.FC<ContactoProps> = ({  id, nombre, email, legajo, apellido, domicilio }) => {
     
     // console.log({id, nombre, apellido, email, legajo});
 
@@ -43,13 +12,21 @@ export const ContactoRow: React.FC<ContactoProps> = ({ id, nombre, apellido, ema
     //     : 'Sin Legajo'
 
     return (
-        <tr>
-            <th scope="row">{id}</th>
-            <td>{nombre}</td>
-            <td>{apellido.toUpperCase()}</td>
-            <td>{email.toLocaleLowerCase()}</td>
-            <td>{legajo ? legajo : 'Sin Legajo'}</td>
-        </tr>
+
+        legajo && (
+            <tr>
+                <th scope="row">{id}</th>
+                <td>{nombre}</td>
+                <td>{apellido.toUpperCase()}</td>
+                <td>{email.toLocaleLowerCase()}</td>
+                <td>{legajo ? legajo : 'Sin Legajo'}</td>
+                <td><DomicilioBadge {...domicilio} /></td>
+                <td>
+                    <i className="bi-tools"></i>
+                </td>
+            </tr>
+        )
+
     )
 
 }

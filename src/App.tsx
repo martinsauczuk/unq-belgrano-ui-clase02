@@ -1,112 +1,59 @@
-import { Title } from './Title';
-import { Contacto } from './domain/domain'
-import { ContactosTable } from './contactos/ContactosTable';
-import { useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useState } from "react"
+import { TaskCheckbox } from "./Components/TaskCheckbox"
+import { Task } from "./domain/Task"
 
+const initialTasks: Task[] = [
+    {
+        done: false,
+        subject: 'Ordenar el dormitorio',
+
+    }, 
+    {
+        done: true,
+        subject: 'Comprar yerba para el mate'
+    }
+]
 
 export const App = () => {
 
-    const appTitle = 'Lista de contactos';
     
-    // let contador: number = 2;
-    const [ contador, setContador] = useState<number>(0);
+    const [ tasks, setTasks ] = useState<Task[]>(initialTasks);
 
 
+    const handleCheckbox  = (event: ChangeEvent<HTMLInputElement>, taskCheck: Task) => {
+        console.log(event.target.checked);
+        console.log(taskCheck);
 
-    // este array lo vamos a pasar como argumento a <TablaContactos>
-    const misContactos: Contacto[] = [
-        {
-            nombre: 'Martin',
-            apellido: 'Sauczuk',
-            legajo: 16887,
-            id: 1,
-            email: 'martin.sauczuk@gmail.com',
-            domicilio: {
-                calle: 'Gutenberg',
-                numero: 1257
-            }
-        },
-        {
-            nombre: 'Augusto',
-            apellido: 'Kopack',
-            id: 2,
-            legajo: 498238,
-            email: 'Augusto@Kopack.com',
-            domicilio: {
-                calle: 'Gutenberg',
-                numero: 1257
-            }
-        },
-        {
-            nombre: 'Gonzalo',
-            apellido: 'Andrade',
-            legajo: 24323423,
-            id: 3,
-            email: 'elgonza@gmail.com',
-            domicilio: {
-                calle: 'Gutenberg',
-                numero: 1257
-            }
-            // telefonos: [
-            //     {
-            //         numero: '1341423423',
-            //         tipo: 'personal'
-            //     },
-            //     {
-            //         numero: '3242434',
-            //         tipo: 'trabajo'
-            //     }
-            // ]
-        },
-        {
-            nombre: 'Iñaki',
-            apellido: 'Urbizu',
-            id: 4,
-            email: 'Iñaki@Iñaki.com',
-            domicilio: {
-                calle: 'Gutenberg',
-                numero: 1257
-            }
-        },
-        {
-            nombre: 'Lucia',
-            apellido: 'Perrone',
-            id: 5,
-            email: 'lu@perrone.com',
-            domicilio: {
-                calle: 'Gutenberg',
-                numero: 1257
-            }
-        },
-    ];
+        taskCheck.done = !taskCheck.done;
 
-    const onClickIncrement = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        console.log('alguien hizo click', event);
-        // contador ++;
-        // renderiza de nuevo todo lo que contenga contador
-
-        setContador( (prevValue) =>  prevValue + 1);
-        
+        setTasks([...tasks]);
     }
 
+    const handleButtonDelete  = (event: SyntheticEvent, taskToDelete: Task) => {
+        console.log('OnDelete');
+        console.log(taskToDelete);
+    }
 
-    return (
-        <>
-            <div className="container">
-                <Title title={appTitle} />
-                
-                <div>
-                    <span className="badge text-bg-info">{contador}</span>
-                </div>
-
-                <button
-                    className='btn btn-outline btn-warning'
-                    onClick={onClickIncrement}
-                >Incrementar contador</button>
-
-                <ContactosTable contactos={misContactos} color='blue'/>
+    console.log('rendering App');
+    console.log(tasks);
+    
+    
+    return(
+        <div className="container">
+            <div className="row">
+                <h3>Lista de tareas</h3>
             </div>
-        </>
-        
+            <div>
+                Totales
+            </div>
+            <div className="row">
+                {
+                    tasks.map( (task) => <TaskCheckbox task={task} handleCheckbox={handleCheckbox} handleButtonDelete={handleButtonDelete} key={task.subject}/>)
+                }
+            </div>
+        </div>
     )
+
+
+    
 }
